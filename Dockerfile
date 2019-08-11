@@ -17,7 +17,7 @@ FROM golang:1.12.7 as builder
 
 WORKDIR /github.com/kubernetes-incubator/external-dns
 COPY . .
-RUN apk add bzr && go mod vendor && \
+RUN apt-get update && apt-get install -y bzr && go mod vendor && \
     make test && \
     make build
 
